@@ -248,4 +248,23 @@ inline bool read_landmark_data(std::string filename,
   return true;
 }
 
+inline double multiv_prob(double sig_x, double sig_y, double observation_x, double observation_y,
+    double landmark_x, double landmark_y) {
+    
+    // Normalization
+    double gauss_norm;
+    gauss_norm = 1 / (2 * M_PI * sig_x * sig_y);
+
+    //Exponent
+    double exponent;
+    exponent = (pow(observation_x - landmark_x, 2) / (2 * pow(sig_x, 2)))
+        + (pow(observation_y - landmark_y, 2) / (2 * pow(sig_y, 2)));
+
+    // Calculate Weight
+    double weight;
+    weight = gauss_norm * exp(-exponent);
+
+    return weight;
+}
+
 #endif  // HELPER_FUNCTIONS_H_
