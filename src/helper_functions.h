@@ -249,7 +249,7 @@ inline bool read_landmark_data(std::string filename,
 }
 
 inline double multiv_prob(double sig_x, double sig_y, double observation_x, double observation_y,
-    double landmark_x, double landmark_y) {
+                          double landmark_x, double landmark_y) {
     
     // Normalization
     double gauss_norm;
