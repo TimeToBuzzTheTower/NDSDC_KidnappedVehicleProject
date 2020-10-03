@@ -17,6 +17,7 @@
 #include <random>
 #include <string>
 #include <vector>
+#include <limits>
 
 #include "helper_functions.h"
 
@@ -32,7 +33,7 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
    *   first position (based on estimates of x, y, theta and their uncertainties
    *   from GPS) and all weights to 1. 
    */
-  num_particles = 100;  // TODO: Set the number of particles
+  num_particles = 50;  // TODO: Set the number of particles
 
   double std_x = std[0];
   double std_y = std[1];
@@ -87,7 +88,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[],
         double theta = particles[i].theta;
 
         // Step towards Prediction
-        if (fabs(yaw_rate) > 0.00001) {
+        if (fabs(yaw_rate) > 0.0000001) {
             x += velocity / yaw_rate * (sin(theta + yaw_rate * delta_t) - sin(theta));
             y += velocity / yaw_rate * (cos(theta) - cos(theta + yaw_rate * delta_t));
             theta += yaw_rate * delta_t;
